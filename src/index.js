@@ -8,7 +8,8 @@ import registerServiceWorker from './registerServiceWorker'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
 import App from './App'
-//import components
+import SignIn from './components/users/SignIn'
+import BatchesContainer from './components/batches/BatchesContainer'
 
 import './index.css'
 
@@ -20,12 +21,12 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App}>
-        // <IndexRoute component={signin?} />
-        // <Route path="url" component={comp-name} />
-      </Route>
-    </Router>
+        <IndexRoute component={BatchesContainer} />
+        <Route path="/sign-in" component={SignIn} />
+        </Route>
+      </Router>
   </Provider>,
   document.getElementById('root')
 )
 
-registerServiceWorker()
+registerServiceWorker();
