@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
+import Title from '../Title'
 import BatchItem from './BatchItem'
 import './BatchesContainer.css'
 import fetchBatches from '../../actions/batches/fetch'
@@ -12,13 +13,17 @@ export class BatchesContainer extends PureComponent {
   static propTypes = {
     batches: PropTypes.array.isRequired,
     fetchBatches: PropTypes.func.isRequired,
-    subscribeToBatchesService: PropTypes.func.isRequired,
-    signedIn: PropTypes.bool,
   }
 
   componentWillMount() {
     this.props.fetchBatches()
     this.props.subscribeToBatchesService()
+  }
+
+  componentDidMount(){
+    if (!this.props.signedIn){
+      this.props.router.push('/sign-in')
+    }
   }
 
   renderBatch(batch, index) {
@@ -32,6 +37,7 @@ export class BatchesContainer extends PureComponent {
     return(
       <div className="batches wrapper">
         <header>
+        <Title content="Student Assessments!" />
           <CreateBatchButton />
         </header>
         <main>

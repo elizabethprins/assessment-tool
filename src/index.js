@@ -10,6 +10,8 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 import App from './App'
 import SignIn from './components/users/SignIn'
 import BatchesContainer from './components/batches/BatchesContainer'
+import BatchPage from './components/batches/BatchPage'
+
 
 import './index.css'
 
@@ -20,11 +22,12 @@ injectTapEventPlugin()
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={App}>
-        <IndexRoute component={BatchesContainer} />
-        <Route path="/sign-in" component={SignIn} />
-        </Route>
-      </Router>
+    <Route path="/" component={App}>
+      <IndexRoute component={BatchesContainer} />
+      <Route path="/sign-in" component={SignIn} />
+      <Route path="/batches/:batchId" component={BatchPage} />
+    </Route>
+    </Router>
   </Provider>,
   document.getElementById('root')
 )

@@ -20,11 +20,10 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
-        <div>
+        <div className="App">
+          <Loading />
           <Navigation />
-          <div className="App">
-            { this.props.children }
-          </div>
+          { this.props.children }
           <LoadErrorMessage />
         </div>
       </MuiThemeProvider>

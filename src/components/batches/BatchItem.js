@@ -3,14 +3,15 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
+import './BatchItem.css'
 
 
 export class BatchItem extends PureComponent {
   static propTypes = {
     _id: PropTypes.string.isRequired,
     batchNumber: PropTypes.number.isRequired,
-    startDate: PropTypes.instanceOf(Date).isRequired,
-    endDate: PropTypes.instanceOf(Date).isRequired,
+    startDate: PropTypes.string.isRequired,
+    endDate: PropTypes.string.isRequired,
     students: PropTypes.array,
   }
 
@@ -31,7 +32,7 @@ export class BatchItem extends PureComponent {
           </h1>
           <main>
             <p>{ students.length } students</p>
-            <p>Starts on: { startDate }</p>
+            <p>Starts on: {startDate}</p>
             <p>Ends on: { endDate }</p>
           </main>
       </article>
