@@ -37,10 +37,10 @@ export class BatchesContainer extends PureComponent {
     return(
       <div className="batches wrapper">
         <header>
-        <Title content="Student Assessments!" />
-          <CreateBatchButton />
+          <Title content="Student Assessments!" />
         </header>
         <main>
+          <CreateBatchButton />
           { this.props.batches.map(this.renderBatch.bind(this)) }
         </main>
       </div>

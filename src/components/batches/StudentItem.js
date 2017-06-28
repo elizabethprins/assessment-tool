@@ -27,7 +27,7 @@ export class StudentItem extends PureComponent {
     return(
       <article className="batch">
           <Link to={`/students/${_id}`}>
-            <img className="image" src={imageURL} />
+            <img className="image" src={imageURL} alt="Profile Pic" />
             <h1>{`${firstName} ${lastName}`}</h1>
           </Link>
           <header>

@@ -24,6 +24,8 @@ export class BatchItem extends PureComponent {
       students,
     } = this.props
 
+    console.log(this.props)
+
 
     return(
       <article className="batch">

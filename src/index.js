@@ -11,7 +11,8 @@ import App from './App'
 import SignIn from './components/users/SignIn'
 import BatchesContainer from './components/batches/BatchesContainer'
 import BatchPage from './components/batches/BatchPage'
-
+import StudentPage from './components/batches/StudentPage'
+import BatchEditor from './components/batches/BatchEditor'
 
 import './index.css'
 
@@ -25,7 +26,9 @@ ReactDOM.render(
     <Route path="/" component={App}>
       <IndexRoute component={BatchesContainer} />
       <Route path="/sign-in" component={SignIn} />
+      <Route path="/create-batch" component={BatchEditor} />
       <Route path="/batches/:batchId" component={BatchPage} />
+      <Route path="/students/:studentId" component={StudentPage} />
     </Route>
     </Router>
   </Provider>,
