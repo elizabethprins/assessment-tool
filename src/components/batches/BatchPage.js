@@ -4,16 +4,15 @@ import { connect } from 'react-redux'
 
 import Title from '../Title'
 import StudentItem from './StudentItem'
-import './BatchesContainer.css'
+import './BatchPage.css'
 import fetchBatches from '../../actions/batches/fetch'
 import CreateStudentButton from './CreateStudentButton'
-
+import AskQuestionButton from './AskQuestionButton'
 
 
 export class BatchPage extends PureComponent {
   static propTypes = {
     fetchBatches: PropTypes.func.isRequired,
-    students: PropTypes.array.isRequired,
   }
 
   componentWillMount() {
@@ -23,6 +22,8 @@ export class BatchPage extends PureComponent {
   renderStudent(student, index) {
     return <StudentItem key={index} { ...student }  />
   }
+
+
 
 
   render() {
@@ -36,14 +37,16 @@ export class BatchPage extends PureComponent {
       students,
     } = this.props
 
-      console.log(students)
 
 
     return(
+
       <div className="batches wrapper">
         <header>
           <Title content={`Batch #${batchNumber}`} />
-          <p>{`${startDate} --- ${endDate}`}</p>
+          <div className="statusBar" />
+          <h3>{`${startDate} --- ${endDate}`}</h3>
+          <AskQuestionButton /> <br />
           <CreateStudentButton />
         </header>
         <main>

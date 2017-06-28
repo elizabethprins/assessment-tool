@@ -3,45 +3,49 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import Title from '../Title'
-import StudentItem from './StudentItem'
 import './BatchesContainer.css'
-import fetchBatches from '../../actions/batches/fetch'
+import fetchBatches from '../../actions/batches/get'
+import getCurrentBatch from '../../actions/batches/get'
 
 
 export class StudentPage extends PureComponent {
   static propTypes = {
-    fetchBatches: PropTypes.func.isRequired,
+    getCurrentBatch: PropTypes.func.isRequired,
     students: PropTypes.array.isRequired,
   }
 
   componentWillMount() {
-    this.props.fetchBatches()
+    const batch = this.props.getCurrentBatch()
+    console.log(batch)
   }
 
-  renderStudent(student, index) {
-    return <student key={index} { ...student }  />
-  }
 
 
   render() {
+    const { batch } = this.props
 
+    console.log(batch)
+
+    if (!batch) return null
 
     const {
-      _id,
-      batchNumber,
-      startDate,
-      endDate,
-      students,
+      students
     } = this.props
 
       console.log(students)
+
+      const student = students.find((student) => (
+      student._id === this.props.params.studentId
+    ))
+    console.log(student)
+
 
 
     return(
       <div className="batches wrapper">
         <header>
-          <Title content={`Batch #${batchNumber}`} />
-          <h1></h1>
+
+          <p>Hello</p>
 
         </header>
         <main>
@@ -52,7 +56,7 @@ export class StudentPage extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ batches }, { params }) => {
+const mapStateToProps = ({ batches, currentBatch }, { params }) => {
   const batch = batches.reduce((prev, next) => {
     if (next._id === params.batchId) {
       return next
@@ -61,8 +65,8 @@ const mapStateToProps = ({ batches }, { params }) => {
   }, {})
 
   return {
-    ...batch
+    ...currentBatch
   }
 }
 
-export default connect(mapStateToProps, { fetchBatches })(StudentPage)
+export default connect(mapStateToProps, { fetchBatches, getCurrentBatch })(StudentPage)
