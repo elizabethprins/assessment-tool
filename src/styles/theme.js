@@ -3,7 +3,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
 // Colors
 export const green        = '#00AA86'
-export const blue          = '#3F51B5'
+export const blue          = '#0499C3'
 export const darkRed      = '#C1272D'
 export const white        = '#ffffff'
 export const black        = '#000000'

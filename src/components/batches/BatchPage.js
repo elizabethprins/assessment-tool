@@ -42,9 +42,8 @@ export class BatchPage extends PureComponent {
     // console.log(green)
     // console.log(<StudentItem />)
     // const studentList = this.props.students.filter((student) => student._id === "5953df04e1d72f7dc94000f6" )
-
+console.log(students)
     return(
-
       <div className="batches wrapper">
         <header>
           <Title content={`Batch #${batchNumber}`} />
