@@ -4,48 +4,29 @@ import { connect } from 'react-redux'
 
 import Title from '../Title'
 import './BatchesContainer.css'
-import fetchBatches from '../../actions/batches/get'
+import fetchBatches from '../../actions/batches/fetch'
 import getCurrentBatch from '../../actions/batches/get'
 
 
 export class StudentPage extends PureComponent {
   static propTypes = {
-    getCurrentBatch: PropTypes.func.isRequired,
-    students: PropTypes.array.isRequired,
+    student: PropTypes.object,
   }
 
   componentWillMount() {
-    const batch = this.props.getCurrentBatch()
-    console.log(batch)
+    const batch = this.props.fetchBatches();
   }
 
-
-
   render() {
-    const { batch } = this.props
+    const { student } = this.props
 
-    console.log(batch)
-
-    if (!batch) return null
-
-    const {
-      students
-    } = this.props
-
-      console.log(students)
-
-      const student = students.find((student) => (
-      student._id === this.props.params.studentId
-    ))
-    console.log(student)
-
-
+    console.log("batch STUDENT", student)
 
     return(
       <div className="batches wrapper">
         <header>
 
-          <p>Hello</p>
+          <p>{student.firstName}</p>
 
         </header>
         <main>
@@ -55,18 +36,21 @@ export class StudentPage extends PureComponent {
     )
   }
 }
+  // <Link to={`batches/${this.props.batchId}`}/>
+const mapStateToProps = ({batches}, {params}) => {
+    if(!batches) return {}
 
-const mapStateToProps = ({ batches, currentBatch }, { params }) => {
-  const batch = batches.reduce((prev, next) => {
-    if (next._id === params.batchId) {
-      return next
-    }
-    return prev
-  }, {})
+    const student = batches.reduce( (obj, batch) => {
+      const studentFilter = batch.students.filter((student) => student._id === params.studentId)
 
-  return {
-    ...currentBatch
-  }
+      if(studentFilter.length === 1) {
+        return obj = studentFilter[0]
+      }
+      return obj;
+    }, {});
+
+    // const batchId = batches.reduce()
+    return { student };
 }
 
 export default connect(mapStateToProps, { fetchBatches, getCurrentBatch })(StudentPage)

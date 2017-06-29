@@ -16,7 +16,7 @@ class CreateBatchButton extends PureComponent {
 
     return (
       <div className="CreateBatchButton">
-        <Link to="/add-student">
+        <Link to="/create-batch">
           <RaisedButton
             label="Create Batch"
             primary={true}

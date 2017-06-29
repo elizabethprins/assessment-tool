@@ -31,6 +31,7 @@ ReactDOM.render(
       <Route path="/add-student" component={StudentEditor} />
       <Route path="/batches/:batchId" component={BatchPage} />
       <Route path="/students/:studentId" component={StudentPage} />
+
     </Route>
     </Router>
   </Provider>,

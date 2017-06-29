@@ -20,11 +20,8 @@ export class BatchPage extends PureComponent {
   }
 
   renderStudent(student, index) {
-    return <StudentItem key={index} { ...student }  />
+    return <StudentItem key={(index)} { ...student }  />
   }
-
-
-
 
   render() {
     if (!this.props._id) return null
@@ -35,32 +32,44 @@ export class BatchPage extends PureComponent {
       startDate,
       endDate,
       students,
+      assessments,
     } = this.props
 
-
+    // const green = ( students.filter((student) => {
+    //   if (!student.assessments.colourCode) return false
+    //   return student.assessments.colourCode === 1
+    // }).length)
+    // console.log(green)
+    // console.log(<StudentItem />)
+    // const studentList = this.props.students.filter((student) => student._id === "5953df04e1d72f7dc94000f6" )
 
     return(
 
       <div className="batches wrapper">
         <header>
           <Title content={`Batch #${batchNumber}`} />
-          <div className="statusBar" />
+          <div className="statusBar">
+            <div className="green" />
+            <div className="yellow" />
+            <div className="red" />
+          </div>
           <h3>{`${startDate} --- ${endDate}`}</h3>
           <AskQuestionButton /> <br />
           <CreateStudentButton />
         </header>
-        <main>
+        <div className="container">
           { this.props.students.map(this.renderStudent.bind(this)) }
-        </main>
+        </div>
       </div>
     )
   }
 }
 
 const mapStateToProps = ({ batches }, { params }) => {
-  const batch = batches.reduce((prev, next) => {
-    if (next._id === params.batchId) {
-      return next
+
+  const batch = batches.reduce((prev, batch) => {
+    if (batch._id === params.batchId) {
+      return batch
     }
     return prev
   }, {})
