@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import joinBatch from '../../actions/batches/join'
+import getCurrentBatch from '../../actions/batches/get'
 import { showError } from '../../actions/loading'
 import './BatchEditor.css'
 
@@ -59,8 +60,9 @@ class StudentEditor extends PureComponent {
   saveStudent() {
     const { firstName, lastName, imageURL } = this.state
     const student = { firstName, lastName, imageURL }
-    const { joinBatch, currentBatch } = this.props
-    console.log(currentBatch._id)
+    const { currentBatch } = this.props
+    console.log(currentBatch)
+
 
     if (this.validate(student)) {
       this.props.joinBatch(currentBatch, student)
@@ -113,7 +115,7 @@ class StudentEditor extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ currentUser, currentBatch, student }) => ({
-  signedIn: !!currentUser && !!currentUser._id, currentBatch, student
+const mapStateToProps = ({ currentUser, currentBatch }) => ({
+  signedIn: !!currentUser && !!currentUser._id, currentBatch
 })
 export default connect(mapStateToProps, { joinBatch, showError })(StudentEditor)

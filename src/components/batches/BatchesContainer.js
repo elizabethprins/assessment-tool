@@ -27,7 +27,6 @@ export class BatchesContainer extends PureComponent {
   }
 
   renderBatch(batch, index) {
-    console.log(batch);
     return <BatchItem key={index} { ...batch }  />
   }
 

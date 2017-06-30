@@ -19,6 +19,7 @@ export class BatchPage extends PureComponent {
     this.props.fetchBatches()
   }
 
+
   renderStudent(student, index) {
     return <StudentItem key={(index)} { ...student }  />
   }
@@ -35,13 +36,7 @@ export class BatchPage extends PureComponent {
       assessments,
     } = this.props
 
-    // const green = ( students.filter((student) => {
-    //   if (!student.assessments.colourCode) return false
-    //   return student.assessments.colourCode === 1
-    // }).length)
-    // console.log(green)
-    // console.log(<StudentItem />)
-    // const studentList = this.props.students.filter((student) => student._id === "5953df04e1d72f7dc94000f6" )
+
 console.log(students)
     return(
       <div className="batches wrapper">
@@ -64,6 +59,7 @@ console.log(students)
   }
 }
 
+
 const mapStateToProps = ({ batches }, { params }) => {
 
   const batch = batches.reduce((prev, batch) => {
@@ -73,9 +69,12 @@ const mapStateToProps = ({ batches }, { params }) => {
     return prev
   }, {})
 
+  const batchId = params.batchId
+  console.log(batchId)
   return {
-    ...batch
+    ...batch, batchId
   }
+
 }
 
 export default connect(mapStateToProps, { fetchBatches })(BatchPage)

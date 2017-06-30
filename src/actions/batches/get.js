@@ -10,7 +10,7 @@ export const GOT_BATCH = 'GOT_BATCH'
 
 const api = new API()
 
-export default (batchId) => {
+export default (_id) => {
   return (dispatch) => {
     dispatch({ type: APP_LOADING })
 
@@ -18,7 +18,7 @@ export default (batchId) => {
 
     api.app.authenticate()
       .then(() => {
-        backend.get(batchId)
+        backend.get(_id)
           .then((result) => {
             dispatch({ type: APP_DONE_LOADING })
             dispatch({ type: LOAD_SUCCESS })

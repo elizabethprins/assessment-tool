@@ -5,7 +5,7 @@ export default (state = null, { type, payload } = {}) => {
   switch (type) {
     case JOINED_BATCH :
     case GOT_BATCH :
-      return payload._id
+      return payload
 
     default :
       return state

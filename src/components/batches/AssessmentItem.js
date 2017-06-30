@@ -20,18 +20,15 @@ export class AssessmentItem extends PureComponent {
       remarks,
     } = this.props
 
-
     return(
-
-<div>
-    <div className={`colourCoder pip-${colourCode}`} />
-      <menu>
-        <p>{`${remarks}`}</p>
-        <p>{`${date}`}</p>
-        <hr />
-
-      </menu>
-</div>
+      <div>
+        <div className={`colourCoder pip-${colourCode}`} />
+        <menu>
+          <p>{`${remarks}`}</p>
+          <p>{`${date}`}</p>
+          <hr />
+        </menu>
+      </div>
     )
   }
 }
