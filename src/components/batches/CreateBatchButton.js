@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import RaisedButton from 'material-ui/RaisedButton'
-import StarIcon from 'material-ui/svg-icons/action/favorite'
+import GroupAdd from 'material-ui/svg-icons/social/group-add'
 import './CreateBatchButton.css'
 
 class CreateBatchButton extends PureComponent {
@@ -20,7 +20,7 @@ class CreateBatchButton extends PureComponent {
           <RaisedButton
             label="Create Batch"
             primary={true}
-            icon={<StarIcon />} />
+            icon={<GroupAdd />} />
         </Link>
       </div>
     )

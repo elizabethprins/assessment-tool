@@ -45,7 +45,6 @@ class BatchEditor extends PureComponent {
   }
 
 
-
   validate(batch) {
     const { batchNumber, startDate, endDate } = batch
 

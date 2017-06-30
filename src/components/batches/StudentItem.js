@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
-import './BatchItem.css'
+import './StudentItem.css'
 
 
 export class StudentItem extends PureComponent {
@@ -30,9 +30,7 @@ export class StudentItem extends PureComponent {
             <img className="image" src={imageURL} alt="Profile Pic" />
             <h1>{`${firstName} ${lastName}`}</h1>
           </Link>
-          <header>
-            <h1>{`${assessments[assessments.length-1].colourCode}`}</h1>
-          </header>
+          <div className={`colourCode pop-${assessments[assessments.length-1].colourCode}`} />
           <main>
             <p>{`${assessments[assessments.length-1].remarks}`}</p>
           </main>

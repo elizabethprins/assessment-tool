@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import RaisedButton from 'material-ui/RaisedButton'
-import StarIcon from 'material-ui/svg-icons/action/favorite'
+import PersonAdd from 'material-ui/svg-icons/social/person-add'
 import './CreateBatchButton.css'
 
 class CreateStudentButton extends PureComponent {
@@ -16,11 +16,11 @@ class CreateStudentButton extends PureComponent {
 
     return (
       <div className="CreateStudentButton">
-        <Link to="/create-student">
+        <Link to="/add-student">
           <RaisedButton
-            label="Create Student"
+            label="Add Student"
             primary={true}
-            icon={<StarIcon />} />
+            icon={<PersonAdd />} />
         </Link>
       </div>
     )

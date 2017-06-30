@@ -1,4 +1,3 @@
-// src/recipes/RecipeItem.js
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -22,10 +21,7 @@ export class BatchItem extends PureComponent {
       startDate,
       endDate,
       students,
-    } = this.props
-
-    console.log(this.props)
-
+    } = this.props;
 
     return(
       <article className="batch">
@@ -34,7 +30,7 @@ export class BatchItem extends PureComponent {
           </h1>
           <main>
             <p>{ students.length } students</p>
-            <p>Starts on: {startDate}</p>
+            <p>Starts on: { startDate }</p>
             <p>Ends on: { endDate }</p>
           </main>
       </article>
