@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import Dialog from 'material-ui/Dialog'
+import FlatButton from 'material-ui/FlatButton'
 import RaisedButton from 'material-ui/RaisedButton'
 import AskQuestion from 'material-ui/svg-icons/social/notifications-active'
 import fetchBatches from '../../actions/batches/fetch'
@@ -10,6 +12,19 @@ class AskQuestionButton extends PureComponent {
   static propTypes = {
     batch: PropTypes.object,
   }
+
+  // state = {
+  //   open: false,
+  // };
+  //
+  // handleOpen = () => {
+  //   this.setState({open: true});
+  // };
+  //
+  // handleClose = () => {
+  //   this.setState({open: false});
+  // };
+
 
   askQuestion() {
     const { batch } = this.props
@@ -35,7 +50,46 @@ class AskQuestionButton extends PureComponent {
   }
 
 
+
   render() {
+
+  //   const actions = [
+  //     <FlatButton
+  //       label="Done"
+  //       primary={true}
+  //       onTouchTap={this.handleClose}
+  //     />,
+  //     <FlatButton
+  //       label="Next Student"
+  //       primary={true}
+  //       keyboardFocused={true}
+  //       onTouchTap={this.handleClose}
+  //     />,
+  //   ];
+  //
+  //   return (
+  //     <div className="AskQuestionButton">
+  //       <RaisedButton
+  //         label="Ask Question"
+  //         primary={true}
+  //         icon={<AskQuestion />}
+  //         onTouchTap={this.handleOpen} />
+  //       <Dialog
+  //         title="Ask a random student!"
+  //         actions={actions}
+  //         modal={false}
+  //         open={this.state.open}
+  //         onRequestClose={this.handleClose}
+  //       >
+  //       <div>
+  //     { this.askQuestion.bind(this) }
+  //       </div>
+  //       </Dialog>
+  //     </div>
+  //   );
+  // }
+
+
     return (
       <div className="AskQuestionButton">
         <RaisedButton

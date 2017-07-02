@@ -20,7 +20,6 @@ class StudentEditor extends PureComponent {
     }
   }
 
-
   updateFirstName(event) {
     this.setState({
       firstName: this.refs.firstName.value

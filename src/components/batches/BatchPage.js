@@ -39,39 +39,24 @@ export class BatchPage extends PureComponent {
       students,
       assessments,
     } = this.props
-    //
+
     // const allAssessments = students.reduce(function(prev, current) {
     // return [...prev, current.assessments];
     // }, []);
     // const recentAssessments = allAssessments.map((array) => array[array.length-1])
 
-
     const theGreens = students.filter((student) => student.assessments[student.assessments.length-1].colourCode === 1 )
     const theYellows = students.filter((student) => student.assessments[student.assessments.length-1].colourCode === 2 )
     const theReds = students.filter((student) => student.assessments[student.assessments.length-1].colourCode === 3 )
 
-
-
-
-
-// console.log("allAssessments", allAssessments)
-// console.log("recentAssessments", recentAssessments)
-console.log("red", theReds)
-console.log("yellow", theYellows)
-console.log("green", theGreens)
-
-
-
-
-console.log("students", students)
     return(
       <div className="batches wrapper">
         <header>
           <Title content={`Batch #${batchNumber}`} />
           <div className="statusBar">
-            <div className="green" />
-            <div className="yellow" />
-            <div className="red" />
+            <div className="green" style={{"width":`${theReds.length/students.length*100}%`}} />
+            <div className="yellow" style={{"width":`${theYellows.length/students.length*100}%`}}/>
+            <div className="red" style={{"width":`${theGreens.length/students.length*100}%`}}/>
           </div>
           <h3>{`${startDate} --- ${endDate}`}</h3>
           <AskQuestionButton /> <br />
