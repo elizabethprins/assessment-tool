@@ -20,7 +20,6 @@ class StudentEditor extends PureComponent {
     }
   }
 
-
   updateFirstName(event) {
     this.setState({
       firstName: this.refs.firstName.value
@@ -35,7 +34,7 @@ class StudentEditor extends PureComponent {
 
   updateImageURL(event) {
     this.setState({
-      imageURL: this.refs.value
+      imageURL: this.refs.imageURL.value
     })
   }
 
@@ -58,18 +57,20 @@ class StudentEditor extends PureComponent {
   }
 
   saveStudent() {
-    const { firstName, lastName, imageURL } = this.state
-    const student = { firstName, lastName, imageURL }
+    const { firstName, lastName, imageURL} = this.state
+    const batchId = this.props.currentBatch._id
+    const student = { firstName, lastName, imageURL, batchId }
     const { currentBatch } = this.props
-    console.log(currentBatch)
+    console.log(currentBatch._id)
+    this.props.joinBatch(currentBatch._id, { student })
 
-
-    if (this.validate(student)) {
-      this.props.joinBatch(currentBatch, student)
-    }
+    // if (this.validate(student)) {
+    //   this.props.joinBatch(currentBatch._id, student)
+    // }
   }
 
   render() {
+    console.log(this.props)
     const { errors } = this.state
 
     return (
@@ -116,6 +117,7 @@ class StudentEditor extends PureComponent {
 }
 
 const mapStateToProps = ({ currentUser, currentBatch }) => ({
-  signedIn: !!currentUser && !!currentUser._id, currentBatch
+  signedIn: !!currentUser && !!currentUser._id,
+  currentBatch
 })
 export default connect(mapStateToProps, { joinBatch, showError })(StudentEditor)
