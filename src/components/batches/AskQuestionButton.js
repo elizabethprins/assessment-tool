@@ -11,27 +11,31 @@ class AskQuestionButton extends PureComponent {
     batch: PropTypes.object,
   }
 
-
   askQuestion() {
-    // const {
-    //   batch,
-    // } = this.props.params
-    //
-    // const students = batch.students.filter((student) => {
-    //   if (student.assessments[0] === undefined ) {
-    //     return null
-    //   } else {
-    //     return student.assessments[student.assessments.length-1].colourCode === 1 }
-    //   })
-    //   console.log(students)
+    const { batch } = this.props
+
+    const theGreens = batch.students.filter((student) => student.assessments[student.assessments.length-1].colourCode === 1 )
+    const theYellows = batch.students.filter((student) => student.assessments[student.assessments.length-1].colourCode === 2 )
+    const theReds = batch.students.filter((student) => student.assessments[student.assessments.length-1].colourCode === 3 )
+
+    const randomNumber = Math.floor((Math.random() * 100) + 1);
+
+    if (randomNumber <= 50) {
+      const luckyRed = Math.floor(Math.random() * theReds.length)
+      alert(`Ask ${theReds[luckyRed].firstName} ${theReds[luckyRed].lastName} a question!`)
+    }
+    if (randomNumber > 50 && randomNumber <= 83) {
+      const luckyYellow = Math.floor(Math.random() * theYellows.length)
+      alert(`Ask ${theYellows[luckyYellow].firstName} ${theYellows[luckyYellow].lastName} a question!`)
+    }
+    if (randomNumber > 83) {
+      const luckyGreen = Math.floor(Math.random() * theGreens.length)
+      alert(`Ask ${theGreens[luckyGreen].firstName} ${theGreens[luckyGreen].lastName} a question!`)
+    }
   }
 
 
   render() {
-
-
-
-
     return (
       <div className="AskQuestionButton">
         <RaisedButton
@@ -44,19 +48,8 @@ class AskQuestionButton extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ batches }, { params }) => {
-  //
-  // const batch = batches.reduce((prev, batch) => {
-  //   if (batch._id === params.batchId) {
-  //     return batch
-  //   }
-  //   return prev
-  // }, {})
-  //
-  // return {
-  //   ...batch
-  // }
-}
-
+const mapStateToProps = ({ currentBatch }) => ({
+  batch: currentBatch,
+})
 
 export default connect(mapStateToProps, {})(AskQuestionButton)

@@ -6,6 +6,7 @@ import Title from '../Title'
 import StudentItem from './StudentItem'
 import './BatchPage.css'
 import fetchBatches from '../../actions/batches/fetch'
+import getCurrentBatch from '../../actions/batches/get'
 import CreateStudentButton from './CreateStudentButton'
 import AskQuestionButton from './AskQuestionButton'
 
@@ -13,12 +14,15 @@ import AskQuestionButton from './AskQuestionButton'
 export class BatchPage extends PureComponent {
   static propTypes = {
     fetchBatches: PropTypes.func.isRequired,
+    getCurrentBatch: PropTypes.func.isRequired
   }
 
   componentWillMount() {
     this.props.fetchBatches()
+    const { batchId } = this.props.params
+    console.log(batchId)
+    this.props.getCurrentBatch(batchId)
   }
-
 
   renderStudent(student, index) {
     return <StudentItem key={(index)} { ...student }  />
@@ -35,9 +39,31 @@ export class BatchPage extends PureComponent {
       students,
       assessments,
     } = this.props
+    //
+    // const allAssessments = students.reduce(function(prev, current) {
+    // return [...prev, current.assessments];
+    // }, []);
+    // const recentAssessments = allAssessments.map((array) => array[array.length-1])
 
 
-console.log(students)
+    const theGreens = students.filter((student) => student.assessments[student.assessments.length-1].colourCode === 1 )
+    const theYellows = students.filter((student) => student.assessments[student.assessments.length-1].colourCode === 2 )
+    const theReds = students.filter((student) => student.assessments[student.assessments.length-1].colourCode === 3 )
+
+
+
+
+
+// console.log("allAssessments", allAssessments)
+// console.log("recentAssessments", recentAssessments)
+console.log("red", theReds)
+console.log("yellow", theYellows)
+console.log("green", theGreens)
+
+
+
+
+console.log("students", students)
     return(
       <div className="batches wrapper">
         <header>
@@ -69,12 +95,9 @@ const mapStateToProps = ({ batches }, { params }) => {
     return prev
   }, {})
 
-  const batchId = params.batchId
-  console.log(batchId)
   return {
-    ...batch, batchId
+    ...batch,
   }
-
 }
 
-export default connect(mapStateToProps, { fetchBatches })(BatchPage)
+export default connect(mapStateToProps, { getCurrentBatch, fetchBatches })(BatchPage)
